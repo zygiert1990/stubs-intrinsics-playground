@@ -2,13 +2,13 @@
 
 `Intel(R) Xeon(R) @ 2.20GHz - 4 vCPU (2 cores), 16GB RAM, Debian GNU/Linux 12 (bookworm)`
 
-`OpenJDK Runtime Environment Temurin-25.0.1+8 (build 25.0.1+8-LTS)`
+`OpenJDK Runtime Environment Temurin-25.0.2+10 (build 25.0.2+10-LTS)`
 
 `SDKMAN!
 script: 5.20.0
 native: 0.7.14 (linux x86_64)`
 
-`Scala CLI version: 1.12.0`
+`Scala CLI version: 1.12.1`
 
 ## Prerequisites
 
