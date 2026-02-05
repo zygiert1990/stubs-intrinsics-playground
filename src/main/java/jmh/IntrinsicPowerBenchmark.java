@@ -18,4 +18,10 @@ public class IntrinsicPowerBenchmark {
         bh.consume(Math.pow(2.0, 10.0));
     }
     
+    @Benchmark
+    @Fork(value = 3, jvmArgsAppend = "-XX:-InlineNatives")
+    public void power_Intrinsic_Off(Blackhole bh) {
+        bh.consume(Math.pow(2.0, 10.0));
+    }
+    
 }
