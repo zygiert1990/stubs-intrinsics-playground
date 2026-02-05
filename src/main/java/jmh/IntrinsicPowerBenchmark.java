@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class IntrinsicPowerBenchmark {
 
     @Benchmark
-    public void power_Intrinsic_ON(Blackhole bh) {
+    public void power_Intrinsic_On(Blackhole bh) {
         bh.consume(Math.pow(2.0, 10.0));
     }
     
