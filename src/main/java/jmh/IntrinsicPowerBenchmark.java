@@ -19,7 +19,7 @@ public class IntrinsicPowerBenchmark {
     }
     
     @Benchmark
-    @Fork(value = 3, jvmArgsAppend = "-XX:+UnlockDiagnosticVMOptions -XX:-InlineNatives")
+    @Fork(value = 3, jvmArgsAppend = {"-XX:+UnlockDiagnosticVMOptions", "-XX:-InlineNatives"})
     public void power_Intrinsic_Off(Blackhole bh) {
         bh.consume(Math.pow(2.0, 10.0));
     }
