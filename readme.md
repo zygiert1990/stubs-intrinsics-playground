@@ -20,7 +20,7 @@ native: 0.7.14 (linux x86_64)`
 6. `source ./scripts/init.sh`
 
 ## Run Main Class
-`scala-cli . --main-class methods.Main --java-opt -XX:+PrintCompilation --power`
+`scala-cli . --main-class playground.Main --java-opt -XX:+PrintCompilation --power`
 
 ## Run JMH Benchmark
 `scala-cli . --jmh --power`
