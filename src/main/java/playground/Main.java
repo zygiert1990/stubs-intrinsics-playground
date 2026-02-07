@@ -2,13 +2,8 @@ package playground;
 
 class Main {
 
-    public static void main(String[] args) throws InterruptedException {
-        // warmup
+    public static void main(String[] args) {
         System.out.println("Power calculation finished: " + power());
-        System.out.println("Power calculation finished: " + power());
-        // fully optimized
-        System.out.println("Power calculation finished: " + power());
-        Thread.sleep(60000);
     }
 
     private static long power() {
