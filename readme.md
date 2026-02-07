@@ -24,3 +24,12 @@ native: 0.7.14 (linux x86_64)`
 
 ## Run JMH Benchmark
 `scala-cli . --jmh --power`
+
+```
+Benchmark                                    Mode  Cnt    Score   Error  Units
+IntrinsicPowerBenchmark.power_Intrinsic_Off  avgt   15  401.869 ? 3.443  ns/op
+IntrinsicPowerBenchmark.power_Intrinsic_On   avgt   15   22.362 ? 0.099  ns/op
+```
+
+## Run JMH Benchmark with profiler
+`scala-cli . --jmh --power -- -f 1 -prof "perfasm:events=cpu-clock;intel=true"`

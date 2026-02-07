@@ -1,0 +1,1061 @@
+root@test:~/stubs-intrinsics-playground# scala-cli . --jmh --power -- -f 1 -prof "perfasm:events=cpu-clock;intel=true"
+The `--jmh` option is experimental
+Please bear in mind that non-ideal user experience should be expected.
+If you encounter any bugs or have feedback to share, make sure to reach out to the maintenance team at https://github.com/VirtusLab/scala-cli
+The `//> using jmh` directive is experimental
+Please bear in mind that non-ideal user experience should be expected.
+If you encounter any bugs or have feedback to share, make sure to reach out to the maintenance team at https://github.com/VirtusLab/scala-cli
+Processing 2 classes from .scala-build/stubs-intrinsics-playground_f82921a17a/classes/main with "reflection" generator
+Writing out Java source to .scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources and resources to .scala-build/stubs-intrinsics-playground_f82921a17a_jmh/resources
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/root/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# JMH version: 1.37
+# VM version: JDK 25.0.2, OpenJDK 64-Bit Server VM, 25.0.2+10-LTS
+# VM invoker: /root/.sdkman/candidates/java/25.0.2-tem/bin/java
+# VM options: -Dscala.sources=/root/stubs-intrinsics-playground/project.scala:/root/stubs-intrinsics-playground/src/main/java/jmh/IntrinsicPowerBenchmark.java:/root/stubs-intrinsics-playground/src/main/java/playground/Main.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_jmhType.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_jmhType_B1.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_jmhType_B2.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_jmhType_B3.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_power_Intrinsic_Off_jmhTest.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_power_Intrinsic_On_jmhTest.java -Dscala.source.names=project.scala:IntrinsicPowerBenchmark.java:Main.java:IntrinsicPowerBenchmark_jmhType.java:IntrinsicPowerBenchmark_jmhType_B1.java:IntrinsicPowerBenchmark_jmhType_B2.java:IntrinsicPowerBenchmark_jmhType_B3.java:IntrinsicPowerBenchmark_power_Intrinsic_Off_jmhTest.java:IntrinsicPowerBenchmark_power_Intrinsic_On_jmhTest.java -XX:+UnlockDiagnosticVMOptions -XX:-InlineNatives
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off
+
+# Run progress: 0.00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Preparing profilers: LinuxPerfAsmProfiler
+# Profilers consume stdout and stderr from target VM, use -v EXTRA to copy to console
+# Warmup Iteration   1: 513.357 ns/op
+# Warmup Iteration   2: 475.549 ns/op
+# Warmup Iteration   3: 428.345 ns/op
+# Warmup Iteration   4: 452.040 ns/op
+# Warmup Iteration   5: 448.032 ns/op
+Iteration   1: 449.368 ns/op
+Iteration   2: 447.021 ns/op
+Iteration   3: 449.415 ns/op
+Iteration   4: 449.261 ns/op
+Iteration   5: 456.321 ns/op
+# Processing profiler results: LinuxPerfAsmProfiler
+
+
+Result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off":
+  450.277 ?(99.9%) 13.577 ns/op [Average]
+  (min, avg, max) = (447.021, 450.277, 456.321), stdev = 3.526
+  CI (99.9%): [436.699, 463.854] (assumes normal distribution)
+
+Secondary result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off:asm":
+PrintAssembly processed: 183465 total address lines.
+Perf output processed (skipped 12.722 seconds):
+ Column 1: cpu-clock (5055 events)
+
+Hottest code regions (>10.00% "cpu-clock" events):
+ Event counts are percents of total event count.
+
+....[Hottest Region 1]..............................................................................
+Unknown, level 0, java.lang.Double::doubleToRawLongBits, version 1, compile id 315
+
+             --------------------------------------------------------------------------------
+             [Entry Point]
+               # {method} {0x000000008919b918} &apos;doubleToRawLongBits&apos; &apos;(D)J&apos; in &apos;java/lang/Double&apos;
+               # parm0:    xmm0:xmm0   = double
+               #           [sp+0x50]  (sp of caller)
+               0x00007fa5c3ede700:   xchg   ax,ax
+               0x00007fa5c3ede702:   mov    r10d,DWORD PTR [rsi+0x8]
+               0x00007fa5c3ede706:   cmp    r10d,DWORD PTR [rax+0x8]
+               0x00007fa5c3ede70a:   jne    0x00007fa5c39853e0           ;   {runtime_call Shared Runtime ic_miss_blob}
+             [Verified Entry Point]
+   0.93%       0x00007fa5c3ede710:   mov    DWORD PTR [rsp-0x14000],eax
+   0.63%       0x00007fa5c3ede717:   push   rbp
+   0.26%       0x00007fa5c3ede718:   mov    rbp,rsp
+   0.97%       0x00007fa5c3ede71b:   sub    rsp,0x40
+   0.12%       0x00007fa5c3ede71f:   nop
+   0.22%       0x00007fa5c3ede720:   cmp    DWORD PTR [r15+0x20],0x0
+   0.51%  ?    0x00007fa5c3ede728:   je     0x00007fa5c3ede72f
+          ?    0x00007fa5c3ede72a:   call   Stub::method_entry_barrier   ;   {runtime_call Stub::method_entry_barrier}
+   0.32%  ?    0x00007fa5c3ede72f:   movabs r14,0x7ffe7f000              ;   {oop(a &apos;java/lang/Class&apos;{0x00000007ffe7f000} = &apos;java/lang/Double&apos;)}
+   0.12%       0x00007fa5c3ede739:   mov    QWORD PTR [rsp+0x30],r14
+   0.22%       0x00007fa5c3ede73e:   lea    r14,[rsp+0x30]
+   0.51%       0x00007fa5c3ede743:   mov    rsi,r14
+   0.38%   ?   0x00007fa5c3ede746:   vzeroupper
+   1.05%   ?   0x00007fa5c3ede749:   movabs r10,0x7fa5c3ede746           ;   {internal_word}
+   0.16%       0x00007fa5c3ede753:   mov    QWORD PTR [r15+0x488],r10
+   0.38%       0x00007fa5c3ede75a:   mov    QWORD PTR [r15+0x480],rsp
+   0.61%       0x00007fa5c3ede761:   lea    rdi,[r15+0x4a0]
+   0.44%       0x00007fa5c3ede768:   mov    DWORD PTR [r15+0x52c],0x4
+   0.12%       0x00007fa5c3ede773:   call   0x00007fa5db79ce30           ;   {runtime_call Java_java_lang_Double_doubleToRawLongBits}
+   0.99%       0x00007fa5c3ede778:   vzeroupper
+   1.09%       0x00007fa5c3ede77b:   mov    DWORD PTR [r15+0x52c],0x5
+               0x00007fa5c3ede786:   lock add DWORD PTR [rsp-0x40],0x0
+  26.41%       0x00007fa5c3ede78c:   cmp    rbp,QWORD PTR [r15+0x28]
+            ?  0x00007fa5c3ede790:   ja     0x00007fa5c3ede7a4
+            ?  0x00007fa5c3ede796:   cmp    DWORD PTR [r15+0x528],0x0
+   0.04%    ?  0x00007fa5c3ede79e:   je     0x00007fa5c3ede7c8
+            ?  0x00007fa5c3ede7a4:   vzeroupper
+               0x00007fa5c3ede7a7:   mov    QWORD PTR [rbp-0x8],rax
+               0x00007fa5c3ede7ab:   mov    rdi,r15
+               0x00007fa5c3ede7ae:   mov    r12,rsp
+               0x00007fa5c3ede7b1:   sub    rsp,0x0
+               0x00007fa5c3ede7b5:   and    rsp,0xfffffffffffffff0
+               0x00007fa5c3ede7b9:   call   0x00007fa5daa3cf70           ;   {runtime_call JavaThread::check_special_condition_for_native_trans(JavaThread*)}
+               0x00007fa5c3ede7be:   mov    rsp,r12
+               0x00007fa5c3ede7c1:   xor    r12,r12
+               0x00007fa5c3ede7c4:   mov    rax,QWORD PTR [rbp-0x8]
+....................................................................................................
+  36.46%  <total for region 1>
+
+....[Hottest Region 2]..............................................................................
+Unknown, level 0, java.lang.Double::longBitsToDouble, version 1, compile id 682
+
+             --------------------------------------------------------------------------------
+             [Entry Point]
+               # {method} {0x000000008919b9d8} &apos;longBitsToDouble&apos; &apos;(J)D&apos; in &apos;java/lang/Double&apos;
+               # parm0:    rsi:rsi   = long
+               #           [sp+0x50]  (sp of caller)
+               0x00007fa5c3ef4980:   xchg   ax,ax
+               0x00007fa5c3ef4982:   mov    r10d,DWORD PTR [rsi+0x8]
+               0x00007fa5c3ef4986:   cmp    r10d,DWORD PTR [rax+0x8]
+               0x00007fa5c3ef498a:   jne    0x00007fa5c39853e0           ;   {runtime_call Shared Runtime ic_miss_blob}
+             [Verified Entry Point]
+   0.45%       0x00007fa5c3ef4990:   mov    DWORD PTR [rsp-0x14000],eax
+   0.61%       0x00007fa5c3ef4997:   push   rbp
+               0x00007fa5c3ef4998:   mov    rbp,rsp
+   0.85%       0x00007fa5c3ef499b:   sub    rsp,0x40
+   0.22%       0x00007fa5c3ef499f:   nop
+               0x00007fa5c3ef49a0:   cmp    DWORD PTR [r15+0x20],0x0
+   0.38%  ?    0x00007fa5c3ef49a8:   je     0x00007fa5c3ef49af
+          ?    0x00007fa5c3ef49aa:   call   Stub::method_entry_barrier   ;   {runtime_call Stub::method_entry_barrier}
+   0.53%  ?    0x00007fa5c3ef49af:   mov    rdx,rsi
+   0.10%       0x00007fa5c3ef49b2:   movabs r14,0x7ffe7f000              ;   {oop(a &apos;java/lang/Class&apos;{0x00000007ffe7f000} = &apos;java/lang/Double&apos;)}
+               0x00007fa5c3ef49bc:   mov    QWORD PTR [rsp+0x30],r14
+   0.32%       0x00007fa5c3ef49c1:   lea    r14,[rsp+0x30]
+   0.47%       0x00007fa5c3ef49c6:   mov    rsi,r14
+   0.08%   ?   0x00007fa5c3ef49c9:   vzeroupper
+   0.89%   ?   0x00007fa5c3ef49cc:   movabs r10,0x7fa5c3ef49c9           ;   {internal_word}
+               0x00007fa5c3ef49d6:   mov    QWORD PTR [r15+0x488],r10
+   0.22%       0x00007fa5c3ef49dd:   mov    QWORD PTR [r15+0x480],rsp
+   0.53%       0x00007fa5c3ef49e4:   lea    rdi,[r15+0x4a0]
+   0.08%       0x00007fa5c3ef49eb:   mov    DWORD PTR [r15+0x52c],0x4
+               0x00007fa5c3ef49f6:   call   0x00007fa5db79ce20           ;   {runtime_call Java_java_lang_Double_longBitsToDouble}
+   0.71%       0x00007fa5c3ef49fb:   vzeroupper
+   1.03%       0x00007fa5c3ef49fe:   mov    DWORD PTR [r15+0x52c],0x5
+   0.04%       0x00007fa5c3ef4a09:   lock add DWORD PTR [rsp-0x40],0x0
+  21.13%       0x00007fa5c3ef4a0f:   cmp    rbp,QWORD PTR [r15+0x28]
+            ?  0x00007fa5c3ef4a13:   ja     0x00007fa5c3ef4a27
+   0.08%    ?  0x00007fa5c3ef4a19:   cmp    DWORD PTR [r15+0x528],0x0
+            ?  0x00007fa5c3ef4a21:   je     0x00007fa5c3ef4a4d
+            ?  0x00007fa5c3ef4a27:   vzeroupper
+               0x00007fa5c3ef4a2a:   vmovsd QWORD PTR [rbp-0x8],xmm0
+               0x00007fa5c3ef4a2f:   mov    rdi,r15
+               0x00007fa5c3ef4a32:   mov    r12,rsp
+               0x00007fa5c3ef4a35:   sub    rsp,0x0
+               0x00007fa5c3ef4a39:   and    rsp,0xfffffffffffffff0
+               0x00007fa5c3ef4a3d:   call   0x00007fa5daa3cf70           ;   {runtime_call JavaThread::check_special_condition_for_native_trans(JavaThread*)}
+               0x00007fa5c3ef4a42:   mov    rsp,r12
+               0x00007fa5c3ef4a45:   xor    r12,r12
+....................................................................................................
+  28.72%  <total for region 2>
+
+....[Hottest Region 3]..............................................................................
+c2, level 4, java.lang.FdLibm$Pow::compute, version 2, compile id 696
+
+                    0x00007fa5c3ef5630:   0x16bebd93      0xbf66c16c16bebd93
+                    0x00007fa5c3ef5634:   0xbf66c16c
+                    0x00007fa5c3ef5638:   0x5555553e      0x3fc555555555553e
+                    0x00007fa5c3ef563c:   0x3fc55555
+                  --------------------------------------------------------------------------------
+                  [Verified Entry Point]
+                    # {method} {0x00007fa59828d068} &apos;compute&apos; &apos;(DD)D&apos; in &apos;java/lang/FdLibm$Pow&apos;
+                    # parm0:    xmm0:xmm0   = double
+                    # parm1:    xmm1:xmm1   = double
+                    #           [sp+0x60]  (sp of caller)
+   0.08%            0x00007fa5c3ef5640:   mov    DWORD PTR [rsp-0x14000],eax  ;   {other}
+                    0x00007fa5c3ef5647:   push   rbp
+                    0x00007fa5c3ef5648:   sub    rsp,0x50
+   0.14%            0x00007fa5c3ef564c:   cmp    DWORD PTR [r15+0x20],0x1
+                    0x00007fa5c3ef5654:   jne    0x00007fa5c3ef6264           ;*synchronization entry
+                                                                              ; - java.lang.FdLibm$Pow::compute@-1 (line 2122)
+                    0x00007fa5c3ef565a:   vmovapd xmm2,xmm0
+   0.12%            0x00007fa5c3ef565e:   vucomisd xmm1,QWORD PTR [rip+0xffffffffffffff22]        # 0x00007fa5c3ef5588
+                                                                              ;   {section_word}
+          ?         0x00007fa5c3ef5666:   jp     0x00007fa5c3ef566e
+          ?         0x00007fa5c3ef5668:   je     0x00007fa5c3ef5e10           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+          ?                                                                   ; - java.lang.FdLibm$Pow::compute@3 (line 2122)
+   0.02%  ?         0x00007fa5c3ef566e:   vucomisd xmm0,xmm0
+                    0x00007fa5c3ef5672:   jp     0x00007fa5c3ef5e44           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Double::isNaN@3 (line 987)
+                                                                              ; - java.lang.FdLibm$Pow::compute@9 (line 2126)
+                    0x00007fa5c3ef5678:   vucomisd xmm1,xmm1
+                    0x00007fa5c3ef567c:   jp     0x00007fa5c3ef5e80           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Double::isNaN@3 (line 987)
+                                                                              ; - java.lang.FdLibm$Pow::compute@16 (line 2126)
+   0.10%            0x00007fa5c3ef5682:   vmovsd QWORD PTR [rsp+0x8],xmm0
+                    0x00007fa5c3ef5688:   vmovsd QWORD PTR [rsp],xmm1
+                    0x00007fa5c3ef568d:   vmovapd xmm0,xmm1
+                    0x00007fa5c3ef5691:   xchg   ax,ax
+   0.06%            0x00007fa5c3ef5693:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@1 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@27 (line 2129)
+                                                                              ;   {static_call}
+   0.10%            0x00007fa5c3ef5698:   nop    DWORD PTR [rax+rax*1+0x210]  ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@1 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@27 (line 2129)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef56a0:   movabs rbp,0x7fffffffffffffff
+                    0x00007fa5c3ef56aa:   mov    rsi,rax
+                    0x00007fa5c3ef56ad:   and    rsi,rbp                      ;*land {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@7 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@27 (line 2129)
+   0.14%            0x00007fa5c3ef56b0:   data16 xchg ax,ax
+                    0x00007fa5c3ef56b3:   call   0x00007fa5c3ef4990           ; ImmutableOopMap {}
+                                                                              ;*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@8 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@27 (line 2129)
+                                                                              ;   {static_call}
+   0.10%            0x00007fa5c3ef56b8:   nop    DWORD PTR [rax+rax*1+0x1000230];*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@8 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@27 (line 2129)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef56c0:   vmovsd QWORD PTR [rsp+0x10],xmm0
+                    0x00007fa5c3ef56c6:   vmovsd xmm0,QWORD PTR [rsp+0x8]
+   0.06%            0x00007fa5c3ef56cc:   data16 xchg ax,ax
+                    0x00007fa5c3ef56cf:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@1 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@33 (line 2130)
+                                                                              ;   {static_call}
+   0.10%            0x00007fa5c3ef56d4:   nop    DWORD PTR [rax+rax*1+0x200024c];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@1 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@33 (line 2130)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef56dc:   mov    rsi,rax
+                    0x00007fa5c3ef56df:   and    rsi,rbp                      ;*land {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@7 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@33 (line 2130)
+                    0x00007fa5c3ef56e2:   nop
+   0.10%            0x00007fa5c3ef56e3:   call   0x00007fa5c3ef4990           ; ImmutableOopMap {}
+                                                                              ;*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@8 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@33 (line 2130)
+                                                                              ;   {static_call}
+   0.06%            0x00007fa5c3ef56e8:   nop    DWORD PTR [rax+rax*1+0x3000260];*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.Math::abs@8 (line 2008)
+                                                                              ; - java.lang.FdLibm$Pow::compute@33 (line 2130)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef56f0:   vmovsd QWORD PTR [rsp+0x18],xmm0
+                    0x00007fa5c3ef56f6:   vmovsd xmm0,QWORD PTR [rsp]
+   0.06%            0x00007fa5c3ef56fb:   vucomisd xmm0,QWORD PTR [rip+0xfffffffffffffe9d]        # 0x00007fa5c3ef55a0
+                                                                              ;   {section_word}
+           ?        0x00007fa5c3ef5703:   jp     0x00007fa5c3ef570b
+           ?        0x00007fa5c3ef5705:   je     0x00007fa5c3ef5ebc           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+           ?                                                                  ; - java.lang.FdLibm$Pow::compute@43 (line 2132)
+   0.10%   ?        0x00007fa5c3ef570b:   vucomisd xmm0,QWORD PTR [rip+0xfffffffffffffe95]        # 0x00007fa5c3ef55a8
+                                                                              ;   {section_word}
+            ?       0x00007fa5c3ef5713:   jp     0x00007fa5c3ef571b
+            ?       0x00007fa5c3ef5715:   je     0x00007fa5c3ef5ef0           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+            ?                                                                 ; - java.lang.FdLibm$Pow::compute@55 (line 2134)
+   0.10%    ?       0x00007fa5c3ef571b:   vmovsd xmm1,QWORD PTR [rsp+0x10]
+                    0x00007fa5c3ef5721:   vucomisd xmm1,QWORD PTR [rip+0xfffffffffffffe57]        # 0x00007fa5c3ef5580
+                                                                              ;   {section_word}
+             ?      0x00007fa5c3ef5729:   jp     0x00007fa5c3ef5731
+   0.12%     ?      0x00007fa5c3ef572b:   je     0x00007fa5c3ef5f34           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+             ?                                                                ; - java.lang.FdLibm$Pow::compute@77 (line 2137)
+             ?      0x00007fa5c3ef5731:   vucomisd xmm1,QWORD PTR [rip+0xfffffffffffffe57]        # 0x00007fa5c3ef5590
+                                                                              ;   {section_word}
+              ?     0x00007fa5c3ef5739:   jp     0x00007fa5c3ef5741
+   0.10%      ?     0x00007fa5c3ef573b:   je     0x00007fa5c3ef5f78           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+              ?                                                               ; - java.lang.FdLibm$Pow::compute@100 (line 2139)
+              ?     0x00007fa5c3ef5741:   vmovsd xmm0,QWORD PTR [rsp+0x8]
+                    0x00007fa5c3ef5747:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@1 (line 104)
+                                                                              ; - java.lang.FdLibm$Pow::compute@147 (line 2148)
+                                                                              ;   {static_call}
+   0.04%            0x00007fa5c3ef574c:   nop    DWORD PTR [rax+rax*1+0x40002c4];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@1 (line 104)
+                                                                              ; - java.lang.FdLibm$Pow::compute@147 (line 2148)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5754:   sar    rax,0x20
+                    0x00007fa5c3ef5758:   mov    r11d,eax                     ;*l2i {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@9 (line 105)
+                                                                              ; - java.lang.FdLibm$Pow::compute@147 (line 2148)
+                    0x00007fa5c3ef575b:   mov    r10d,r11d
+   0.10%            0x00007fa5c3ef575e:   and    r10d,0x7fffffff              ;*iand {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@156 (line 2149)
+                    0x00007fa5c3ef5765:   test   r11d,r11d
+                    0x00007fa5c3ef5768:   jl     0x00007fa5c3ef5fac           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@164 (line 2158)
+                    0x00007fa5c3ef576e:   vmovsd xmm0,QWORD PTR [rsp+0x18]
+   0.12%            0x00007fa5c3ef5774:   vucomisd xmm0,QWORD PTR [rip+0xfffffffffffffe0c]        # 0x00007fa5c3ef5588
+                                                                              ;   {section_word}
+               ?    0x00007fa5c3ef577c:   jp     0x00007fa5c3ef5784
+               ?    0x00007fa5c3ef577e:   je     0x00007fa5c3ef5fe8           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+               ?                                                              ; - java.lang.FdLibm$Pow::compute@216 (line 2170)
+   0.04%       ?    0x00007fa5c3ef5784:   vucomisd xmm0,QWORD PTR [rip+0xfffffffffffffe04]        # 0x00007fa5c3ef5590
+                                                                              ;   {section_word}
+                ?   0x00007fa5c3ef578c:   jp     0x00007fa5c3ef5794
+                ?   0x00007fa5c3ef578e:   je     0x00007fa5c3ef6028           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                ?                                                             ; - java.lang.FdLibm$Pow::compute@225 (line 2170)
+   0.06%        ?   0x00007fa5c3ef5794:   vucomisd xmm0,QWORD PTR [rip+0xfffffffffffffde4]        # 0x00007fa5c3ef5580
+                                                                              ;   {section_word}
+                 ?  0x00007fa5c3ef579c:   jp     0x00007fa5c3ef57a4
+                 ?  0x00007fa5c3ef579e:   je     0x00007fa5c3ef6068           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                 ?                                                            ; - java.lang.FdLibm$Pow::compute@232 (line 2170)
+   0.12%         ?  0x00007fa5c3ef57a4:   mov    ebp,r11d
+                    0x00007fa5c3ef57a7:   sar    ebp,0x1f                     ;*ishr {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@304 (line 2185)
+                    0x00007fa5c3ef57aa:   cmp    ebp,0xffffffff
+                    0x00007fa5c3ef57ad:   je     0x00007fa5c3ef60a8           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@314 (line 2188)
+                    0x00007fa5c3ef57b3:   vmovsd xmm1,QWORD PTR [rsp+0x10]
+   0.12%            0x00007fa5c3ef57b9:   vucomisd xmm1,QWORD PTR [rip+0xfffffffffffffdef]        # 0x00007fa5c3ef55b0
+                                                                              ;   {section_word}
+                    0x00007fa5c3ef57c1:   ja     0x00007fa5c3ef60bc           ;*ifle {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@349 (line 2197)
+                    0x00007fa5c3ef57c7:   cmp    r10d,0x100000
+                    0x00007fa5c3ef57ce:   jl     0x00007fa5c3ef60f0           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@529 (line 2226)
+   0.04%            0x00007fa5c3ef57d4:   mov    r9d,r11d
+                    0x00007fa5c3ef57d7:   shr    r9d,0x14
+                    0x00007fa5c3ef57db:   and    r11d,0xfffff                 ;*iand {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@568 (line 2232)
+                    0x00007fa5c3ef57e2:   and    r9d,0x7ff
+   0.04%            0x00007fa5c3ef57e9:   mov    r8d,r11d
+                    0x00007fa5c3ef57ec:   or     r8d,0x3ff00000               ;*ior {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@575 (line 2234)
+                    0x00007fa5c3ef57f3:   add    r9d,0xfffffc01               ;*isub {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@560 (line 2231)
+                    0x00007fa5c3ef57fa:   cmp    r11d,0x3988e
+                    0x00007fa5c3ef5801:   jg     0x00007fa5c3ef610c           ;*if_icmpgt {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@582 (line 2235)
+   0.06%            0x00007fa5c3ef5807:   mov    ebp,r8d
+                    0x00007fa5c3ef580a:   mov    DWORD PTR [rsp+0x8],r9d
+                    0x00007fa5c3ef580f:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@1 (line 113)
+                                                                              ; - java.lang.FdLibm$Pow::compute@621 (line 2244)
+                                                                              ;   {static_call}
+   0.08%            0x00007fa5c3ef5814:   nop    DWORD PTR [rax+rax*1+0x500038c];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@1 (line 113)
+                                                                              ; - java.lang.FdLibm$Pow::compute@621 (line 2244)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef581c:   mov    esi,eax
+                    0x00007fa5c3ef581e:   movsxd r10,ebp
+                    0x00007fa5c3ef5821:   shl    r10,0x20
+   0.14%            0x00007fa5c3ef5825:   or     rsi,r10                      ;*lor {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@15 (line 114)
+                                                                              ; - java.lang.FdLibm$Pow::compute@621 (line 2244)
+                    0x00007fa5c3ef5828:   data16 xchg ax,ax
+                    0x00007fa5c3ef582b:   call   0x00007fa5c3ef4990           ; ImmutableOopMap {}
+                                                                              ;*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@16 (line 114)
+                                                                              ; - java.lang.FdLibm$Pow::compute@621 (line 2244)
+                                                                              ;   {static_call}
+   0.08%            0x00007fa5c3ef5830:   nop    DWORD PTR [rax+rax*1+0x60003a8];*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@16 (line 114)
+                                                                              ; - java.lang.FdLibm$Pow::compute@621 (line 2244)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5838:   vmovsd QWORD PTR [rsp+0x10],xmm0    ;*synchronization entry
+                                                                              ; - java.lang.FdLibm::__LO@-1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@737 (line 2266)
+                    0x00007fa5c3ef583e:   vmovapd xmm1,xmm0
+   0.08%            0x00007fa5c3ef5842:   vaddsd xmm0,xmm0,QWORD PTR [rip+0xfffffffffffffd36]        # 0x00007fa5c3ef5580
+                                                                              ;   {section_word}
+                    0x00007fa5c3ef584a:   vsubsd xmm2,xmm1,QWORD PTR [rip+0xfffffffffffffd2e]        # 0x00007fa5c3ef5580
+                                                                              ;*dsub {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@708 (line 2262)
+                                                                              ;   {section_word}
+                    0x00007fa5c3ef5852:   vmovsd xmm1,QWORD PTR [rip+0xfffffffffffffd26]        # 0x00007fa5c3ef5580
+                                                                              ;   {section_word}
+                    0x00007fa5c3ef585a:   vdivsd xmm0,xmm1,xmm0               ;*ddiv {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@720 (line 2263)
+   0.06%            0x00007fa5c3ef585e:   vmovsd QWORD PTR [rsp+0x20],xmm0
+                    0x00007fa5c3ef5864:   vmulsd xmm0,xmm2,xmm0               ;*dmul {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@727 (line 2264)
+   0.02%            0x00007fa5c3ef5868:   vmovsd QWORD PTR [rsp+0x28],xmm0
+                    0x00007fa5c3ef586e:   vmovsd QWORD PTR [rsp+0x18],xmm2
+   0.02%            0x00007fa5c3ef5874:   data16 xchg ax,ax
+                    0x00007fa5c3ef5877:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@737 (line 2266)
+                                                                              ;   {static_call}
+   0.20%            0x00007fa5c3ef587c:   nop    DWORD PTR [rax+rax*1+0x70003f4];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@737 (line 2266)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5884:   mov    rsi,rax
+                    0x00007fa5c3ef5887:   movabs r10,0xffffffff00000000
+                    0x00007fa5c3ef5891:   and    rsi,r10                      ;*land {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@9 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@737 (line 2266)
+   0.02%            0x00007fa5c3ef5894:   data16 xchg ax,ax
+                    0x00007fa5c3ef5897:   call   0x00007fa5c3ef4990           ; ImmutableOopMap {}
+                                                                              ;*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@737 (line 2266)
+                                                                              ;   {static_call}
+   0.10%            0x00007fa5c3ef589c:   nop    DWORD PTR [rax+rax*1+0x8000414];*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@737 (line 2266)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef58a4:   vmovsd QWORD PTR [rsp+0x30],xmm0
+                    0x00007fa5c3ef58aa:   sar    ebp,1
+   0.16%            0x00007fa5c3ef58ac:   or     ebp,0x20000000
+                    0x00007fa5c3ef58b2:   add    ebp,0x80000                  ;*iadd {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@756 (line 2269)
+                    0x00007fa5c3ef58b8:   vxorpd xmm0,xmm0,xmm0
+                    0x00007fa5c3ef58bc:   data16 xchg ax,ax
+   0.12%            0x00007fa5c3ef58bf:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@1 (line 113)
+                                                                              ; - java.lang.FdLibm$Pow::compute@763 (line 2269)
+                                                                              ;   {static_call}
+   0.04%            0x00007fa5c3ef58c4:   nop    DWORD PTR [rax+rax*1+0x900043c];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@1 (line 113)
+                                                                              ; - java.lang.FdLibm$Pow::compute@763 (line 2269)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef58cc:   mov    esi,eax
+                    0x00007fa5c3ef58ce:   movsxd r10,ebp
+                    0x00007fa5c3ef58d1:   shl    r10,0x20
+   0.06%            0x00007fa5c3ef58d5:   or     rsi,r10                      ;*lor {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@15 (line 114)
+                                                                              ; - java.lang.FdLibm$Pow::compute@763 (line 2269)
+                    0x00007fa5c3ef58d8:   data16 xchg ax,ax
+                    0x00007fa5c3ef58db:   call   0x00007fa5c3ef4990           ; ImmutableOopMap {}
+                                                                              ;*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@16 (line 114)
+                                                                              ; - java.lang.FdLibm$Pow::compute@763 (line 2269)
+                                                                              ;   {static_call}
+   0.10%            0x00007fa5c3ef58e0:   nop    DWORD PTR [rax+rax*1+0xa000458];*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@16 (line 114)
+                                                                              ; - java.lang.FdLibm$Pow::compute@763 (line 2269)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef58e8:   vsubsd xmm2,xmm0,QWORD PTR [rip+0xfffffffffffffc90]        # 0x00007fa5c3ef5580
+                                                                              ;   {section_word}
+                    0x00007fa5c3ef58f0:   vmovsd xmm4,QWORD PTR [rsp+0x28]
+   0.55%            0x00007fa5c3ef58f6:   vmovapd xmm1,xmm4
+   0.02%            0x00007fa5c3ef58fa:   vmulsd xmm6,xmm1,xmm4               ;*dmul {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@804 (line 2273)
+   0.38%            0x00007fa5c3ef58fe:   vmovsd xmm1,QWORD PTR [rsp+0x10]
+                    0x00007fa5c3ef5904:   vsubsd xmm1,xmm1,xmm2
+                    0x00007fa5c3ef5908:   vmulsd xmm2,xmm6,QWORD PTR [rip+0xfffffffffffffca8]        # 0x00007fa5c3ef55b8
+                                                                              ;   {section_word}
+   0.45%            0x00007fa5c3ef5910:   vmulsd xmm3,xmm1,QWORD PTR [rsp+0x30]
+                    0x00007fa5c3ef5916:   vaddsd xmm1,xmm2,QWORD PTR [rip+0xfffffffffffffca2]        # 0x00007fa5c3ef55c0
+                                                                              ;   {section_word}
+   0.32%            0x00007fa5c3ef591e:   vmulsd xmm5,xmm6,xmm6
+                    0x00007fa5c3ef5922:   vmulsd xmm2,xmm1,xmm6
+   0.32%            0x00007fa5c3ef5926:   vmovsd xmm8,QWORD PTR [rsp+0x30]
+                    0x00007fa5c3ef592c:   vmovapd xmm1,xmm8
+                    0x00007fa5c3ef5931:   vmulsd xmm9,xmm1,xmm8               ;*dmul {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@870 (line 2276)
+                    0x00007fa5c3ef5936:   vaddsd xmm1,xmm2,QWORD PTR [rip+0xfffffffffffffc8a]        # 0x00007fa5c3ef55c8
+                                                                              ;   {section_word}
+   0.24%            0x00007fa5c3ef593e:   vaddsd xmm7,xmm9,QWORD PTR [rip+0xfffffffffffffc52]        # 0x00007fa5c3ef5598
+                                                                              ;   {section_word}
+                    0x00007fa5c3ef5946:   vmovsd QWORD PTR [rsp+0x10],xmm9
+                    0x00007fa5c3ef594c:   vmulsd xmm1,xmm1,xmm6
+   0.36%            0x00007fa5c3ef5950:   vaddsd xmm1,xmm1,QWORD PTR [rip+0xfffffffffffffc78]        # 0x00007fa5c3ef55d0
+                                                                              ;   {section_word}
+   0.18%            0x00007fa5c3ef5958:   vmulsd xmm1,xmm1,xmm6
+   0.26%            0x00007fa5c3ef595c:   vaddsd xmm1,xmm1,QWORD PTR [rip+0xfffffffffffffc74]        # 0x00007fa5c3ef55d8
+                                                                              ;   {section_word}
+   0.49%            0x00007fa5c3ef5964:   vmulsd xmm2,xmm1,xmm6
+   0.26%            0x00007fa5c3ef5968:   vaddsd xmm1,xmm4,xmm8
+                    0x00007fa5c3ef596d:   vaddsd xmm2,xmm2,QWORD PTR [rip+0xfffffffffffffc6b]        # 0x00007fa5c3ef55e0
+                                                                              ;   {section_word}
+   0.34%            0x00007fa5c3ef5975:   vmulsd xmm2,xmm5,xmm2
+   0.47%            0x00007fa5c3ef5979:   vmulsd xmm0,xmm8,xmm0
+                    0x00007fa5c3ef597d:   vmovsd xmm4,QWORD PTR [rsp+0x18]
+                    0x00007fa5c3ef5983:   vsubsd xmm0,xmm4,xmm0
+                    0x00007fa5c3ef5987:   vsubsd xmm0,xmm0,xmm3
+   0.14%            0x00007fa5c3ef598b:   vmulsd xmm0,xmm0,QWORD PTR [rsp+0x20];*dmul {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@797 (line 2271)
+                    0x00007fa5c3ef5991:   vmovq  rbp,xmm0
+                    0x00007fa5c3ef5996:   vmulsd xmm0,xmm1,xmm0
+                    0x00007fa5c3ef599a:   vaddsd xmm0,xmm2,xmm0               ;*dadd {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@863 (line 2275)
+   0.10%            0x00007fa5c3ef599e:   vmovsd QWORD PTR [rsp+0x18],xmm0
+   0.08%            0x00007fa5c3ef59a4:   vaddsd xmm0,xmm7,xmm0               ;*dadd {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@881 (line 2277)
+   0.30%            0x00007fa5c3ef59a8:   data16 xchg ax,ax
+                    0x00007fa5c3ef59ab:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@887 (line 2278)
+                                                                              ;   {static_call}
+   0.08%            0x00007fa5c3ef59b0:   nop    DWORD PTR [rax+rax*1+0xb000528];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@887 (line 2278)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef59b8:   mov    rsi,rax
+                    0x00007fa5c3ef59bb:   movabs r10,0xffffffff00000000
+                    0x00007fa5c3ef59c5:   and    rsi,r10                      ;*land {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@9 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@887 (line 2278)
+   0.14%            0x00007fa5c3ef59c8:   data16 xchg ax,ax
+                    0x00007fa5c3ef59cb:   call   0x00007fa5c3ef4990           ; ImmutableOopMap {}
+                                                                              ;*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@887 (line 2278)
+                                                                              ;   {static_call}
+   0.04%            0x00007fa5c3ef59d0:   nop    DWORD PTR [rax+rax*1+0xc000548];*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@887 (line 2278)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef59d8:   vmovq  xmm1,rbp
+                    0x00007fa5c3ef59dd:   vmulsd xmm1,xmm1,xmm0
+                    0x00007fa5c3ef59e1:   vsubsd xmm2,xmm0,QWORD PTR [rip+0xfffffffffffffbaf]        # 0x00007fa5c3ef5598
+                                                                              ;   {section_word}
+   0.06%            0x00007fa5c3ef59e9:   vmovsd xmm3,QWORD PTR [rsp+0x30]
+                    0x00007fa5c3ef59ef:   vmulsd xmm3,xmm3,xmm0               ;*dmul {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@910 (line 2281)
+                    0x00007fa5c3ef59f3:   vsubsd xmm0,xmm2,QWORD PTR [rsp+0x10]
+                    0x00007fa5c3ef59f9:   vmovsd xmm2,QWORD PTR [rsp+0x18]
+                    0x00007fa5c3ef59ff:   vsubsd xmm0,xmm2,xmm0
+                    0x00007fa5c3ef5a03:   vmulsd xmm0,xmm0,QWORD PTR [rsp+0x28]
+   0.89%            0x00007fa5c3ef5a09:   vaddsd xmm0,xmm1,xmm0               ;*dadd {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@923 (line 2282)
+   0.18%            0x00007fa5c3ef5a0d:   vmovq  rbp,xmm0
+   0.20%            0x00007fa5c3ef5a12:   vaddsd xmm0,xmm3,xmm0               ;*dadd {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@930 (line 2284)
+   0.22%            0x00007fa5c3ef5a16:   vmovsd QWORD PTR [rsp+0x10],xmm3
+                    0x00007fa5c3ef5a1c:   data16 xchg ax,ax
+                    0x00007fa5c3ef5a1f:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@936 (line 2285)
+                                                                              ;   {static_call}
+   0.10%            0x00007fa5c3ef5a24:   nop    DWORD PTR [rax+rax*1+0xd00059c];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@936 (line 2285)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5a2c:   mov    rsi,rax
+                    0x00007fa5c3ef5a2f:   movabs r10,0xffffffff00000000
+                    0x00007fa5c3ef5a39:   and    rsi,r10                      ;*land {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@9 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@936 (line 2285)
+   0.10%            0x00007fa5c3ef5a3c:   data16 xchg ax,ax
+                    0x00007fa5c3ef5a3f:   call   0x00007fa5c3ef4990           ; ImmutableOopMap {}
+                                                                              ;*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@936 (line 2285)
+                                                                              ;   {static_call}
+   0.06%            0x00007fa5c3ef5a44:   nop    DWORD PTR [rax+rax*1+0xe0005bc];*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@936 (line 2285)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5a4c:   vsubsd xmm1,xmm0,QWORD PTR [rsp+0x10]
+                    0x00007fa5c3ef5a52:   vmulsd xmm2,xmm0,QWORD PTR [rip+0xfffffffffffffb8e]        # 0x00007fa5c3ef55e8
+                                                                              ;   {section_word}
+   0.10%            0x00007fa5c3ef5a5a:   vmovq  xmm3,rbp
+                    0x00007fa5c3ef5a5f:   vsubsd xmm1,xmm3,xmm1
+                    0x00007fa5c3ef5a63:   vmulsd xmm3,xmm0,QWORD PTR [rip+0xfffffffffffffb85]        # 0x00007fa5c3ef55f0
+                                                                              ;*dmul {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@956 (line 2287)
+                                                                              ;   {section_word}
+                    0x00007fa5c3ef5a6b:   vmulsd xmm0,xmm1,QWORD PTR [rip+0xfffffffffffffb85]        # 0x00007fa5c3ef55f8
+                                                                              ;   {section_word}
+   0.14%            0x00007fa5c3ef5a73:   vaddsd xmm0,xmm2,xmm0
+                    0x00007fa5c3ef5a77:   vaddsd xmm0,xmm0,QWORD PTR [rip+0xfffffffffffffb09]        # 0x00007fa5c3ef5588
+                                                                              ;*dadd {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@977 (line 2288)
+                                                                              ;   {section_word}
+   0.02%            0x00007fa5c3ef5a7f:   vmovq  rbp,xmm0
+                    0x00007fa5c3ef5a84:   vaddsd xmm0,xmm3,xmm0
+   0.06%            0x00007fa5c3ef5a88:   vmovsd QWORD PTR [rsp+0x10],xmm3
+                    0x00007fa5c3ef5a8e:   vaddsd xmm0,xmm0,QWORD PTR [rip+0xfffffffffffffaf2]        # 0x00007fa5c3ef5588
+                                                                              ;   {section_word}
+                    0x00007fa5c3ef5a96:   mov    r11d,DWORD PTR [rsp+0x8]
+                    0x00007fa5c3ef5a9b:   vpxor  xmm1,xmm1,xmm1
+   0.06%            0x00007fa5c3ef5a9f:   vcvtsi2sd xmm1,xmm1,r11d            ;*i2d {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@982 (line 2290)
+   0.02%            0x00007fa5c3ef5aa4:   vmovsd QWORD PTR [rsp+0x8],xmm1
+                    0x00007fa5c3ef5aaa:   vaddsd xmm0,xmm0,xmm1               ;*dadd {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@998 (line 2291)
+   0.08%            0x00007fa5c3ef5aae:   nop
+                    0x00007fa5c3ef5aaf:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1004 (line 2292)
+                                                                              ;   {static_call}
+   0.04%            0x00007fa5c3ef5ab4:   nop    DWORD PTR [rax+rax*1+0xf00062c];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1004 (line 2292)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5abc:   mov    rsi,rax
+                    0x00007fa5c3ef5abf:   movabs r10,0xffffffff00000000
+                    0x00007fa5c3ef5ac9:   and    rsi,r10                      ;*land {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@9 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1004 (line 2292)
+   0.08%            0x00007fa5c3ef5acc:   data16 xchg ax,ax
+                    0x00007fa5c3ef5acf:   call   0x00007fa5c3ef4990           ; ImmutableOopMap {}
+                                                                              ;*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1004 (line 2292)
+                                                                              ;   {static_call}
+   0.10%            0x00007fa5c3ef5ad4:   nop    DWORD PTR [rax+rax*1+0x1000064c];*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1004 (line 2292)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5adc:   vmovsd QWORD PTR [rsp+0x18],xmm0
+                    0x00007fa5c3ef5ae2:   vsubsd xmm0,xmm0,QWORD PTR [rsp+0x8]
+   0.12%            0x00007fa5c3ef5ae8:   vsubsd xmm0,xmm0,QWORD PTR [rsp+0x10]
+                    0x00007fa5c3ef5aee:   vmovq  xmm1,rbp
+                    0x00007fa5c3ef5af3:   vsubsd xmm0,xmm1,xmm0               ;*dsub {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@1025 (line 2293)
+                    0x00007fa5c3ef5af7:   vmovsd QWORD PTR [rsp+0x8],xmm0
+   0.02%            0x00007fa5c3ef5afd:   vmovsd xmm0,QWORD PTR [rsp]
+   0.02%            0x00007fa5c3ef5b02:   nop
+                    0x00007fa5c3ef5b03:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1034 (line 2298)
+                                                                              ;   {static_call}
+   0.18%            0x00007fa5c3ef5b08:   nop    DWORD PTR [rax+rax*1+0x11000680];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 95)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1034 (line 2298)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5b10:   mov    rsi,rax
+                    0x00007fa5c3ef5b13:   movabs r10,0xffffffff00000000
+                    0x00007fa5c3ef5b1d:   and    rsi,r10                      ;*land {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@9 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1034 (line 2298)
+   0.14%            0x00007fa5c3ef5b20:   data16 xchg ax,ax
+                    0x00007fa5c3ef5b23:   call   0x00007fa5c3ef4990           ; ImmutableOopMap {}
+                                                                              ;*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1034 (line 2298)
+                                                                              ;   {static_call}
+   0.08%            0x00007fa5c3ef5b28:   nop    DWORD PTR [rax+rax*1+0x120006a0];*invokestatic longBitsToDouble {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@17 (line 96)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1034 (line 2298)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5b30:   vmovsd xmm2,QWORD PTR [rsp]
+                    0x00007fa5c3ef5b35:   vmulsd xmm1,xmm2,QWORD PTR [rsp+0x8]
+   0.14%            0x00007fa5c3ef5b3b:   vmovsd xmm3,QWORD PTR [rsp+0x18]
+                    0x00007fa5c3ef5b41:   vmulsd xmm4,xmm3,xmm0               ;*dmul {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@1057 (line 2300)
+                    0x00007fa5c3ef5b45:   vsubsd xmm0,xmm2,xmm0
+                    0x00007fa5c3ef5b49:   vmulsd xmm0,xmm0,xmm3
+   0.06%            0x00007fa5c3ef5b4d:   vaddsd xmm0,xmm0,xmm1               ;*dadd {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@1050 (line 2299)
+                    0x00007fa5c3ef5b51:   vmovsd QWORD PTR [rsp],xmm4
+                    0x00007fa5c3ef5b56:   vaddsd xmm1,xmm0,xmm4               ;*dadd {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@1064 (line 2301)
+                    0x00007fa5c3ef5b5a:   vmovsd QWORD PTR [rsp+0x10],xmm1
+   0.06%            0x00007fa5c3ef5b60:   vmovsd QWORD PTR [rsp+0x8],xmm0
+                    0x00007fa5c3ef5b66:   vmovapd xmm0,xmm1
+                    0x00007fa5c3ef5b6a:   nop
+                    0x00007fa5c3ef5b6b:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@1 (line 104)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1069 (line 2302)
+                                                                              ;   {static_call}
+   0.04%            0x00007fa5c3ef5b70:   nop    DWORD PTR [rax+rax*1+0x130006e8];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@1 (line 104)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1069 (line 2302)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5b78:   sar    rax,0x20
+                    0x00007fa5c3ef5b7c:   mov    ebp,eax                      ;*l2i {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__HI@9 (line 105)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1069 (line 2302)
+                    0x00007fa5c3ef5b7e:   vmovsd xmm0,QWORD PTR [rsp+0x10]
+   0.08%            0x00007fa5c3ef5b84:   data16 xchg ax,ax
+                    0x00007fa5c3ef5b87:   call   0x00007fa5c3ede710           ; ImmutableOopMap {}
+                                                                              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 86)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1076 (line 2303)
+                                                                              ;   {static_call}
+   0.12%            0x00007fa5c3ef5b8c:   nop    DWORD PTR [rax+rax*1+0x14000704];*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@1 (line 86)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1076 (line 2303)
+                                                                              ;   {post_call_nop}
+                    0x00007fa5c3ef5b94:   mov    r11d,eax                     ;*l2i {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm::__LO@6 (line 87)
+                                                                              ; - java.lang.FdLibm$Pow::compute@1076 (line 2303)
+                    0x00007fa5c3ef5b97:   mov    r8d,ebp
+                    0x00007fa5c3ef5b9a:   cmp    ebp,0x40900000
+                    0x00007fa5c3ef5ba0:   jge    0x00007fa5c3ef6134           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@1085 (line 2304)
+   0.08%            0x00007fa5c3ef5ba6:   and    ebp,0x7fffffff               ;*iand {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@1140 (line 2312)
+                    0x00007fa5c3ef5bac:   cmp    ebp,0x4090cc00
+                    0x00007fa5c3ef5bb2:   jge    0x00007fa5c3ef6158           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@1143 (line 2312)
+                    0x00007fa5c3ef5bb8:   cmp    ebp,0x3fe00000
+                    0x00007fa5c3ef5bbe:   jle    0x00007fa5c3ef5dfc           ;*if_icmple {reexecute=0 rethrow=0 return_oop=0}
+                                                                              ; - java.lang.FdLibm$Pow::compute@1243 (line 2335)
+                    0x00007fa5c3ef5bc4:   mov    DWORD PTR [rsp+0x10],r8d
+   0.08%            0x00007fa5c3ef5bc9:   mov    r10d,r8d
+....................................................................................................
+  12.76%  <total for region 3>
+
+....[Hottest Regions]...............................................................................
+  36.46%    Unknown, level 0  java.lang.Double::doubleToRawLongBits, version 1, compile id 315
+  28.72%    Unknown, level 0  java.lang.Double::longBitsToDouble, version 1, compile id 682
+  12.76%         c2, level 4  java.lang.FdLibm$Pow::compute, version 2, compile id 696
+   6.69%    Unknown, level 0  java.lang.Double::doubleToRawLongBits, version 1, compile id 315
+   3.70%    Unknown, level 0  java.lang.Double::longBitsToDouble, version 1, compile id 682
+   2.00%         c2, level 4  java.lang.FdLibm$Pow::compute, version 2, compile id 696
+   1.96%          libjava.so  Java_java_lang_Double_longBitsToDouble
+   1.23%   [kernel.kallsyms]  syscall_enter_from_user_mode
+   0.99%    Unknown, level 0  java.lang.Double::longBitsToDouble, version 1, compile id 682
+   0.85%           libc.so.6  syscall
+   0.75%           libc.so.6  write
+   0.51%         c2, level 4  java.lang.FdLibm$Pow::compute, version 2, compile id 696
+   0.36%           libjvm.so  ElfSymbolTable::lookup
+   0.26%         c2, level 4  jmh.jmh_generated.IntrinsicPowerBenchmark_power_Intrinsic_Off_jmhTest::power_Intrinsic_Off_avgt_jmhStub, version 6, compile id 728
+   0.14%   [kernel.kallsyms]  _raw_spin_unlock_irqrestore
+   0.10%   [kernel.kallsyms]  mutex_lock
+   0.08%   [kernel.kallsyms]  __rcu_read_lock
+   0.06%   [kernel.kallsyms]  _raw_spin_unlock_irq
+   0.06%           libjvm.so  fileStream::write
+   0.04%   [kernel.kallsyms]  vfs_write
+   2.27%  <...other 107 warm regions...>
+....................................................................................................
+  99.98%  <totals>
+
+....[Hottest Methods (after inlining)]..............................................................
+  43.15%    Unknown, level 0  java.lang.Double::doubleToRawLongBits, version 1, compile id 315
+  33.41%    Unknown, level 0  java.lang.Double::longBitsToDouble, version 1, compile id 682
+  15.27%         c2, level 4  java.lang.FdLibm$Pow::compute, version 2, compile id 696
+   1.96%          libjava.so  Java_java_lang_Double_longBitsToDouble
+   1.23%   [kernel.kallsyms]  syscall_enter_from_user_mode
+   0.85%           libc.so.6  syscall
+   0.77%           libc.so.6  write
+   0.40%           libjvm.so  ElfSymbolTable::lookup
+   0.32%                      <unknown>
+   0.26%         c2, level 4  jmh.jmh_generated.IntrinsicPowerBenchmark_power_Intrinsic_Off_jmhTest::power_Intrinsic_Off_avgt_jmhStub, version 6, compile id 728
+   0.14%   [kernel.kallsyms]  _raw_spin_unlock_irqrestore
+   0.10%   [kernel.kallsyms]  mutex_lock
+   0.08%   [kernel.kallsyms]  vfs_write
+   0.08%   [kernel.kallsyms]  __rcu_read_lock
+   0.08%           libjvm.so  fileStream::write
+   0.08%   [kernel.kallsyms]  pipe_write
+   0.06%   [kernel.kallsyms]  _raw_spin_unlock_irq
+   0.06%           libc.so.6  [unknown]
+   0.06%   [kernel.kallsyms]  __fget_light
+   0.04%   [kernel.kallsyms]  clear_page_erms
+   1.60%  <...other 76 warm methods...>
+....................................................................................................
+  99.98%  <totals>
+
+....[Distribution by Source]........................................................................
+  76.56%    Unknown, level 0
+  15.53%         c2, level 4
+   2.49%   [kernel.kallsyms]
+   1.96%          libjava.so
+   1.76%           libc.so.6
+   1.11%           libjvm.so
+   0.32%
+   0.14%         interpreter
+   0.10%      hsdis-amd64.so
+   0.02%         c1, level 3
+....................................................................................................
+  99.98%  <totals>
+
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.2, OpenJDK 64-Bit Server VM, 25.0.2+10-LTS
+# VM invoker: /root/.sdkman/candidates/java/25.0.2-tem/bin/java
+# VM options: -Dscala.sources=/root/stubs-intrinsics-playground/project.scala:/root/stubs-intrinsics-playground/src/main/java/jmh/IntrinsicPowerBenchmark.java:/root/stubs-intrinsics-playground/src/main/java/playground/Main.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_jmhType.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_jmhType_B1.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_jmhType_B2.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_jmhType_B3.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_power_Intrinsic_Off_jmhTest.java:/root/stubs-intrinsics-playground/.scala-build/stubs-intrinsics-playground_f82921a17a_jmh/sources/jmh/jmh_generated/IntrinsicPowerBenchmark_power_Intrinsic_On_jmhTest.java -Dscala.source.names=project.scala:IntrinsicPowerBenchmark.java:Main.java:IntrinsicPowerBenchmark_jmhType.java:IntrinsicPowerBenchmark_jmhType_B1.java:IntrinsicPowerBenchmark_jmhType_B2.java:IntrinsicPowerBenchmark_jmhType_B3.java:IntrinsicPowerBenchmark_power_Intrinsic_Off_jmhTest.java:IntrinsicPowerBenchmark_power_Intrinsic_On_jmhTest.java
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: jmh.IntrinsicPowerBenchmark.power_Intrinsic_On
+
+# Run progress: 50.00% complete, ETA 00:00:20
+# Fork: 1 of 1
+# Preparing profilers: LinuxPerfAsmProfiler
+# Profilers consume stdout and stderr from target VM, use -v EXTRA to copy to console
+# Warmup Iteration   1: 23.748 ns/op
+# Warmup Iteration   2: 23.989 ns/op
+# Warmup Iteration   3: 22.630 ns/op
+# Warmup Iteration   4: 22.859 ns/op
+# Warmup Iteration   5: 22.833 ns/op
+Iteration   1: 22.677 ns/op
+Iteration   2: 23.464 ns/op
+Iteration   3: 22.513 ns/op
+Iteration   4: 22.588 ns/op
+Iteration   5: 22.991 ns/op
+# Processing profiler results: LinuxPerfAsmProfiler
+
+
+Result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_On":
+  22.847 ?(99.9%) 1.502 ns/op [Average]
+  (min, avg, max) = (22.513, 22.847, 23.464), stdev = 0.390
+  CI (99.9%): [21.344, 24.349] (assumes normal distribution)
+
+Secondary result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_On:asm":
+PrintAssembly processed: 166517 total address lines.
+Perf output processed (skipped 12.055 seconds):
+ Column 1: cpu-clock (5153 events)
+
+Hottest code regions (>10.00% "cpu-clock" events):
+ Event counts are percents of total event count.
+
+....[Hottest Region 1]..............................................................................
+runtime stub, StubRoutines::dpow
+
+               0x00007f003b93a458:   jne    0x00007f003b93a463
+               0x00007f003b93a45a:   vmulsd xmm0,xmm0,xmm0
+               0x00007f003b93a45e:   jmp    0x00007f003b93b51b
+               0x00007f003b93a463:   cmp    r8,QWORD PTR [rip+0x192837a6]        # 0x00007f0054bbdc10
+          ?    0x00007f003b93a46a:   jne    0x00007f003b93a483
+          ?    0x00007f003b93a46c:   vmovq  r9,xmm0
+          ?    0x00007f003b93a471:   cmp    r9,QWORD PTR [rip+0x192837a0]        # 0x00007f0054bbdc18
+          ??   0x00007f003b93a478:   jl     0x00007f003b93a483
+          ??   0x00007f003b93a47a:   vsqrtsd xmm0,xmm0,xmm0
+          ??   0x00007f003b93a47e:   jmp    0x00007f003b93b51b
+   1.77%  ??   0x00007f003b93a483:   vpextrw eax,xmm0,0x3
+               0x00007f003b93a488:   vxorpd xmm2,xmm2,xmm2
+               0x00007f003b93a48c:   movabs r9,0x3ff0000000000000
+   1.53%       0x00007f003b93a496:   vmovq  xmm2,r9
+               0x00007f003b93a49b:   mov    r8d,0x3fb90000
+               0x00007f003b93a4a1:   vmovq  xmm7,r8
+               0x00007f003b93a4a6:   vxorpd xmm1,xmm1,xmm1
+   1.59%       0x00007f003b93a4aa:   movabs r10,0x77f0000000000000
+               0x00007f003b93a4b4:   vmovq  xmm1,r10
+               0x00007f003b93a4b9:   vmovdqu xmm3,xmm0
+               0x00007f003b93a4bd:   mov    edx,0x7ff0
+   1.53%       0x00007f003b93a4c2:   and    edx,eax
+   0.02%       0x00007f003b93a4c4:   sub    edx,0x3ff0
+               0x00007f003b93a4ca:   mov    ecx,edx
+               0x00007f003b93a4cc:   sar    edx,0x1f
+   1.16%       0x00007f003b93a4cf:   add    ecx,edx
+               0x00007f003b93a4d1:   xor    ecx,edx
+               0x00007f003b93a4d3:   vpor   xmm0,xmm0,xmm2
+               0x00007f003b93a4d7:   vmovdqu xmm6,XMMWORD PTR [rip+0x19286851]        # 0x00007f0054bc0d30
+   1.47%       0x00007f003b93a4df:   vpsrlq xmm0,xmm0,0x1b
+               0x00007f003b93a4e4:   vmovq  xmm2,QWORD PTR [rip+0x19286834]        # 0x00007f0054bc0d20
+               0x00007f003b93a4ec:   vpsrld xmm0,xmm0,0x2
+               0x00007f003b93a4f1:   add    ecx,0x10
+   1.57%       0x00007f003b93a4f4:   bsr    ecx,ecx
+               0x00007f003b93a4f7:   vrcpps xmm0,xmm0
+               0x00007f003b93a4fb:   vpsllq xmm3,xmm3,0xc
+               0x00007f003b93a500:   mov    r11d,0x2000
+   1.65%       0x00007f003b93a506:   vmovq  xmm4,r11
+   0.02%       0x00007f003b93a50b:   vpsrlq xmm3,xmm3,0xc
+               0x00007f003b93a510:   sub    eax,0x10
+               0x00007f003b93a513:   cmp    eax,0x7fe0
+            ?  0x00007f003b93a518:   jae    0x00007f003b93a72c
+   1.71%    ?  0x00007f003b93a51e:   mov    r8d,0x0
+            ?  0x00007f003b93a524:   vmulss xmm0,xmm0,xmm7
+            ?  0x00007f003b93a528:   mov    edx,0xffffffff
+            ?  0x00007f003b93a52d:   sub    ecx,0x4
+   1.57%    ?  0x00007f003b93a530:   shl    edx,cl
+            ?  0x00007f003b93a532:   shl    rdx,0x20
+   1.51%    ?  0x00007f003b93a536:   vmovq  xmm5,rdx
+   0.02%    ?  0x00007f003b93a53b:   vpor   xmm3,xmm3,xmm1
+            ?  0x00007f003b93a53f:   sub    eax,0x3fdf
+            ?  0x00007f003b93a544:   cmp    eax,0x1
+            ?  0x00007f003b93a547:   jbe    0x00007f003b93b13a
+   1.51%    ?  0x00007f003b93a54d:   vpaddd xmm0,xmm0,xmm4
+            ?  0x00007f003b93a551:   vpand  xmm5,xmm5,xmm3
+            ?  0x00007f003b93a555:   vmovd  edx,xmm0
+            ?  0x00007f003b93a559:   vpsllq xmm0,xmm0,0x1d
+   1.55%    ?  0x00007f003b93a55e:   vsubsd xmm3,xmm3,xmm5
+            ?  0x00007f003b93a562:   vpand  xmm0,xmm0,xmm6
+            ?  0x00007f003b93a566:   sub    eax,0x1
+            ?  0x00007f003b93a569:   sar    eax,0x4
+   1.61%    ?  0x00007f003b93a56c:   vcvtsi2sd xmm7,xmm7,eax
+            ?  0x00007f003b93a570:   vmulpd xmm5,xmm5,xmm0
+            ?  0x00007f003b93a574:   vmulsd xmm3,xmm3,xmm0
+   1.57%    ?  0x00007f003b93a578:   vmovdqu xmm1,XMMWORD PTR [rip+0x192856d0]        # 0x00007f0054bbfc50
+            ?  0x00007f003b93a580:   movabs r11,0x7f0054bbdc40
+            ?  0x00007f003b93a58a:   vsubsd xmm5,xmm5,xmm2
+            ?  0x00007f003b93a58e:   vmovdqu xmm4,XMMWORD PTR [rip+0x192856ca]        # 0x00007f0054bbfc60
+   1.59%    ?  0x00007f003b93a596:   mov    ecx,eax
+   0.02%    ?  0x00007f003b93a598:   sar    eax,0x1f
+            ?  0x00007f003b93a59b:   add    ecx,eax
+            ?  0x00007f003b93a59d:   xor    eax,ecx
+   1.69%    ?  0x00007f003b93a59f:   add    eax,0x1
+            ?  0x00007f003b93a5a2:   bsr    eax,eax
+            ?  0x00007f003b93a5a5:   vunpcklpd xmm5,xmm5,xmm3
+            ?  0x00007f003b93a5a9:   vmovdqu xmm6,XMMWORD PTR [rip+0x192856bf]        # 0x00007f0054bbfc70
+   1.96%    ?  0x00007f003b93a5b1:   vaddsd xmm3,xmm3,xmm5
+   0.02%    ?  0x00007f003b93a5b5:   and    edx,0xffc000
+            ?  0x00007f003b93a5bb:   shr    edx,0xa
+            ?  0x00007f003b93a5be:   vaddpd xmm5,xmm5,XMMWORD PTR [r11+rdx*1-0xe40]
+   1.71%    ?  0x00007f003b93a5c8:   vmovdqu xmm0,XMMWORD PTR [rip+0x192856b0]        # 0x00007f0054bbfc80
+            ?  0x00007f003b93a5d0:   vpshufd xmm2,xmm3,0x44
+            ?  0x00007f003b93a5d5:   vmulsd xmm3,xmm3,xmm3
+   1.44%    ?  0x00007f003b93a5d9:   vmulpd xmm1,xmm1,xmm2
+   0.04%    ?  0x00007f003b93a5dd:   vmulpd xmm4,xmm4,xmm2
+            ?  0x00007f003b93a5e1:   vaddsd xmm5,xmm5,xmm7
+   0.02%    ?  0x00007f003b93a5e5:   vmulsd xmm2,xmm2,xmm3
+   1.67%    ?  0x00007f003b93a5e9:   vaddpd xmm6,xmm6,xmm1
+            ?  0x00007f003b93a5ed:   vmulsd xmm3,xmm3,xmm3
+            ?  0x00007f003b93a5f1:   vaddpd xmm0,xmm0,xmm4
+            ?  0x00007f003b93a5f5:   vmovq  xmm1,QWORD PTR [rsp+0x10]
+   1.71%    ?  0x00007f003b93a5fb:   mov    cx,WORD PTR [rsp+0x16]
+            ?  0x00007f003b93a600:   vpshufd xmm7,xmm5,0xee
+   0.02%    ?  0x00007f003b93a605:   vmovq  xmm4,QWORD PTR [rip+0x19286703]        # 0x00007f0054bc0d10
+   0.04%    ?  0x00007f003b93a60d:   vmulpd xmm6,xmm6,xmm2
+   1.75%    ?  0x00007f003b93a611:   vpshufd xmm3,xmm3,0x44
+   0.02%    ?  0x00007f003b93a616:   vmulpd xmm0,xmm0,xmm2
+            ?  0x00007f003b93a61a:   shl    eax,0x4
+            ?  0x00007f003b93a61d:   sub    eax,0x3e00
+   1.67%    ?  0x00007f003b93a622:   and    ecx,0x7ff0
+   0.04%    ?  0x00007f003b93a628:   add    eax,ecx
+   0.04%    ?  0x00007f003b93a62a:   vmulpd xmm3,xmm3,xmm6
+   0.17%    ?  0x00007f003b93a62e:   cmp    eax,0x270
+            ?  0x00007f003b93a633:   jae    0x00007f003b93a8e7
+   1.32%    ?  0x00007f003b93a639:   vxorpd xmm6,xmm6,xmm6
+   0.02%    ?  0x00007f003b93a63d:   mov    edx,0x42b8
+            ?  0x00007f003b93a642:   vpinsrw xmm6,xmm6,edx,0x3
+   1.38%    ?  0x00007f003b93a647:   vmovdqu xmm2,xmm1
+   0.02%    ?  0x00007f003b93a64b:   vpand  xmm4,xmm4,xmm1
+   0.02%    ?  0x00007f003b93a64f:   vsubsd xmm1,xmm1,xmm4
+   0.10%    ?  0x00007f003b93a653:   vmulsd xmm4,xmm4,xmm5
+   1.44%    ?  0x00007f003b93a657:   vaddsd xmm0,xmm0,xmm7
+   0.02%    ?  0x00007f003b93a65b:   vmulsd xmm1,xmm1,xmm5
+   0.02%    ?  0x00007f003b93a65f:   vmovdqu xmm7,xmm6
+   0.04%    ?  0x00007f003b93a663:   vaddsd xmm6,xmm6,xmm4
+   1.79%    ?  0x00007f003b93a667:   movabs r11,0x7f0054bbfd10
+            ?  0x00007f003b93a671:   vaddpd xmm3,xmm3,xmm0
+   0.04%    ?  0x00007f003b93a675:   vmovd  edx,xmm6
+   0.12%    ?  0x00007f003b93a679:   vsubsd xmm6,xmm6,xmm7
+   1.42%    ?  0x00007f003b93a67d:   vpshufd xmm0,xmm3,0xee
+            ?  0x00007f003b93a682:   vsubsd xmm4,xmm4,xmm6
+   0.12%    ?  0x00007f003b93a686:   vaddsd xmm0,xmm0,xmm3
+   0.02%    ?  0x00007f003b93a68a:   mov    ecx,edx
+   1.94%    ?  0x00007f003b93a68c:   and    edx,0xff
+            ?  0x00007f003b93a692:   add    edx,edx
+   0.04%    ?  0x00007f003b93a694:   vmovdqu xmm5,XMMWORD PTR [r11+rdx*8]
+            ?  0x00007f003b93a69a:   vaddsd xmm4,xmm4,xmm1
+   1.38%    ?  0x00007f003b93a69e:   vmulsd xmm2,xmm2,xmm0
+            ?  0x00007f003b93a6a2:   vmovdqu xmm7,XMMWORD PTR [rip+0x19285636]        # 0x00007f0054bbfce0
+            ?  0x00007f003b93a6aa:   vmovdqu xmm3,XMMWORD PTR [rip+0x1928563e]        # 0x00007f0054bbfcf0
+            ?  0x00007f003b93a6b2:   shl    ecx,0xc
+   1.07%    ?  0x00007f003b93a6b5:   xor    ecx,r8d
+   0.02%    ?  0x00007f003b93a6b8:   and    ecx,0xfff00000
+            ?  0x00007f003b93a6be:   vmovq  xmm6,rcx
+            ?  0x00007f003b93a6c3:   vaddsd xmm2,xmm2,xmm4
+   1.96%    ?  0x00007f003b93a6c7:   movabs r9,0x3fe62e42fefa39ef
+            ?  0x00007f003b93a6d1:   vmovq  xmm1,r9
+            ?  0x00007f003b93a6d6:   vpshufd xmm0,xmm2,0x44
+   0.04%    ?  0x00007f003b93a6db:   vpshufd xmm4,xmm2,0x44
+   1.75%    ?  0x00007f003b93a6e0:   vmulsd xmm1,xmm1,xmm2
+   0.06%    ?  0x00007f003b93a6e4:   vpshufd xmm6,xmm6,0x11
+            ?  0x00007f003b93a6e9:   vmulpd xmm0,xmm0,xmm0
+            ?  0x00007f003b93a6ed:   vmulpd xmm7,xmm7,xmm4
+   1.53%    ?  0x00007f003b93a6f1:   vpaddd xmm5,xmm5,xmm6
+   0.06%    ?  0x00007f003b93a6f5:   vmulsd xmm1,xmm1,xmm5
+   0.14%    ?  0x00007f003b93a6f9:   vpshufd xmm6,xmm5,0xee
+   0.02%    ?  0x00007f003b93a6fe:   vmulsd xmm0,xmm0,xmm0
+   1.53%    ?  0x00007f003b93a702:   vaddpd xmm3,xmm3,xmm7
+   0.02%    ?  0x00007f003b93a706:   vaddsd xmm1,xmm1,xmm6
+   0.39%    ?  0x00007f003b93a70a:   vmulpd xmm0,xmm0,xmm3
+   0.31%    ?  0x00007f003b93a70e:   vpshufd xmm3,xmm0,0xee
+   2.93%    ?  0x00007f003b93a713:   vmulsd xmm0,xmm0,xmm5
+   3.73%    ?  0x00007f003b93a717:   vmulsd xmm3,xmm3,xmm5
+   1.59%    ?  0x00007f003b93a71b:   vaddsd xmm0,xmm0,xmm1
+   3.40%    ?  0x00007f003b93a71f:   vaddsd xmm0,xmm0,xmm3
+   6.64%    ?  0x00007f003b93a723:   vaddsd xmm0,xmm0,xmm5
+   7.41%    ?  0x00007f003b93a727:   jmp    0x00007f003b93b51b
+            ?  0x00007f003b93a72c:   add    eax,0x10
+               0x00007f003b93a72f:   mov    edx,0x7ff0
+               0x00007f003b93a734:   and    edx,eax
+               0x00007f003b93a736:   cmp    edx,0x7ff0
+               0x00007f003b93a73c:   je     0x00007f003b93aa5f
+               0x00007f003b93a742:   test   eax,0x8000
+               0x00007f003b93a747:   jne    0x00007f003b93acf8
+               0x00007f003b93a74d:   vmovq  xmm0,QWORD PTR [rsp+0x8]
+               0x00007f003b93a753:   vmovq  xmm3,QWORD PTR [rsp+0x8]
+               0x00007f003b93a759:   vmovd  edx,xmm3
+....................................................................................................
+  84.79%  <total for region 1>
+
+....[Hottest Regions]...............................................................................
+  84.79%        runtime stub  StubRoutines::dpow
+   4.48%        runtime stub  StubRoutines::dpow
+   3.40%         c2, level 4  jmh.jmh_generated.IntrinsicPowerBenchmark_power_Intrinsic_On_jmhTest::power_Intrinsic_On_avgt_jmhStub, version 4, compile id 676
+   1.75%        runtime stub  StubRoutines::dpow
+   1.11%   [kernel.kallsyms]  syscall_enter_from_user_mode
+   0.93%           libc.so.6  write
+   0.82%           libc.so.6  syscall
+   0.33%           libjvm.so  ElfSymbolTable::lookup
+   0.10%   [kernel.kallsyms]  _raw_spin_unlock_irqrestore
+   0.06%   [kernel.kallsyms]  clear_page_erms
+   0.06%           libjvm.so  defaultStream::hold
+   0.06%                      <unknown>
+   0.04%   [kernel.kallsyms]  x64_sys_call
+   0.04%   [kernel.kallsyms]  __fget_light
+   0.04%   [kernel.kallsyms]  mutex_unlock
+   0.04%   [kernel.kallsyms]  mutex_lock
+   0.04%         interpreter  method entry point (kind = zerolocals)
+   0.04%      hsdis-amd64.so  print_insn
+   0.04%           libjvm.so  fileStream::write
+   0.04%           libjvm.so  xmlStream::write_text
+   1.80%  <...other 93 warm regions...>
+....................................................................................................
+  99.98%  <totals>
+
+....[Hottest Methods (after inlining)]..............................................................
+  91.01%        runtime stub  StubRoutines::dpow
+   3.40%         c2, level 4  jmh.jmh_generated.IntrinsicPowerBenchmark_power_Intrinsic_On_jmhTest::power_Intrinsic_On_avgt_jmhStub, version 4, compile id 676
+   1.11%   [kernel.kallsyms]  syscall_enter_from_user_mode
+   0.95%           libc.so.6  write
+   0.82%           libc.so.6  syscall
+   0.39%                      <unknown>
+   0.33%           libjvm.so  ElfSymbolTable::lookup
+   0.10%   [kernel.kallsyms]  _raw_spin_unlock_irqrestore
+   0.08%   [kernel.kallsyms]  vfs_write
+   0.08%           libjvm.so  xmlStream::write_text
+   0.06%   [kernel.kallsyms]  clear_page_erms
+   0.06%      hsdis-amd64.so  print_insn
+   0.06%           libjvm.so  defaultStream::hold
+   0.04%   [kernel.kallsyms]  mutex_lock
+   0.04%   [kernel.kallsyms]  mutex_unlock
+   0.04%           libjvm.so  fileStream::write
+   0.04%           libc.so.6  [unknown]
+   0.04%         interpreter  method entry point (kind = zerolocals)
+   0.04%         interpreter  invokevirtual  182 invokevirtual
+   0.04%           libjvm.so  defaultStream::write
+   1.28%  <...other 64 warm methods...>
+....................................................................................................
+  99.98%  <totals>
+
+....[Distribution by Source]........................................................................
+  91.01%        runtime stub
+   3.40%         c2, level 4
+   2.10%   [kernel.kallsyms]
+   1.88%           libc.so.6
+   0.93%           libjvm.so
+   0.39%
+   0.16%         interpreter
+   0.10%      hsdis-amd64.so
+   0.02%         c1, level 3
+....................................................................................................
+  99.98%  <totals>
+
+
+
+# Run complete. Total time: 00:00:40
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                        Mode  Cnt    Score    Error  Units
+IntrinsicPowerBenchmark.power_Intrinsic_Off      avgt    5  450.277 ? 13.577  ns/op
+IntrinsicPowerBenchmark.power_Intrinsic_Off:asm  avgt           NaN             ---
+IntrinsicPowerBenchmark.power_Intrinsic_On       avgt    5   22.847 ?  1.502  ns/op
+IntrinsicPowerBenchmark.power_Intrinsic_On:asm   avgt           NaN             ---
