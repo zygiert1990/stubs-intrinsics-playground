@@ -22,8 +22,10 @@ native: 0.7.14 (linux x86_64)`
 ## Run Main Class
 1. With displaying generated stubs:
 `scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintStubCode --power`
-2. With displaying stubs generation time
+2. With displaying stubs generation time:
 `scala-cli . --main-class playground.Main --java-opt -Xlog:startuptime --power`
+3. With displaying generated stubs and `InlineNatives` option disabled:
+`scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintStubCode --java-opt -XX:-InlineNatives --power`
 ```
 [0.005s][info][startuptime] StubRoutines generation initial stubs, 0.0005537 secs
 [0.005s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000390 secs
