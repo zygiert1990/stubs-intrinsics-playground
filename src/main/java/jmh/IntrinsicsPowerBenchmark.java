@@ -26,7 +26,7 @@ public class IntrinsicsPowerBenchmark {
     
     @Benchmark
     @Fork(value = 3, jvmArgsAppend = {"-XX:+UnlockDiagnosticVMOptions", "-XX:ControlIntrinsic=-_dpow"})
-    public void power_Intrinsics_Off_Disabled_By_Through_Control_Intrinsic(Blackhole bh) {
+    public void power_Intrinsics_Off_Disabled_By_Control_Intrinsic(Blackhole bh) {
         bh.consume(Math.pow(2.0, 10.0));
     }
     

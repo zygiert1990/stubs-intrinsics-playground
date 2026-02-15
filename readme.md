@@ -20,10 +20,30 @@ native: 0.7.14 (linux x86_64)`
 6. `source ./scripts/init.sh`
 
 ## Run Main Class
-1. With displaying generated stubs:
+1. With displaying stubs generation time:
+   `scala-cli . --main-class playground.Main --java-opt -Xlog:startuptime --power`
+```
+[0.005s][info][startuptime] StubRoutines generation initial stubs, 0.0005537 secs
+[0.005s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000390 secs
+[0.019s][info][startuptime] Genesis, 0.0142378 secs
+[0.019s][info][startuptime] StubRoutines generation continuation stubs, 0.0000309 secs
+[0.019s][info][startuptime] SharedRuntime generate_jfr_stubs, 0.0000318 secs
+[0.019s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000053 secs
+[0.020s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000085 secs
+[0.020s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000038 secs
+[0.020s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000061 secs
+[0.024s][info][startuptime] Interpreter generation, 0.0016316 secs
+[0.026s][info][startuptime] StubRoutines generation final stubs, 0.0003121 secs
+[0.026s][info][startuptime] MethodHandles adapters generation, 0.0000257 secs
+[0.026s][info][startuptime] Start VMThread, 0.0002809 secs
+[0.036s][info][startuptime] Initialize java.lang classes, 0.0097709 secs
+[0.041s][info][startuptime] StubRoutines generation compiler stubs, 0.0033504 secs
+[0.042s][info][startuptime] Initialize java.lang.invoke classes, 0.0006948 secs
+[0.048s][info][startuptime] Initialize module system, 0.0056185 secs
+[0.049s][info][startuptime] Create VM, 0.0473394 secs
+```
+2. With displaying generated stubs:
 `scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintStubCode --power`
-2. With displaying generated stubs and `InlineNatives` option disabled:
-`scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintStubCode --java-opt -XX:-InlineNatives --power`
 3. With printing Intrinsics:
 `scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintIntrinsics --power`
 ```
@@ -59,28 +79,6 @@ native: 0.7.14 (linux x86_64)`
 ```
 6. To print all intrinsic specific options:
 `java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -version | grep -Ei 'use.*intrinsic'`
-7. With displaying stubs generation time:
-`scala-cli . --main-class playground.Main --java-opt -Xlog:startuptime --power`
-```
-[0.005s][info][startuptime] StubRoutines generation initial stubs, 0.0005537 secs
-[0.005s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000390 secs
-[0.019s][info][startuptime] Genesis, 0.0142378 secs
-[0.019s][info][startuptime] StubRoutines generation continuation stubs, 0.0000309 secs
-[0.019s][info][startuptime] SharedRuntime generate_jfr_stubs, 0.0000318 secs
-[0.019s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000053 secs
-[0.020s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000085 secs
-[0.020s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000038 secs
-[0.020s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000061 secs
-[0.024s][info][startuptime] Interpreter generation, 0.0016316 secs
-[0.026s][info][startuptime] StubRoutines generation final stubs, 0.0003121 secs
-[0.026s][info][startuptime] MethodHandles adapters generation, 0.0000257 secs
-[0.026s][info][startuptime] Start VMThread, 0.0002809 secs
-[0.036s][info][startuptime] Initialize java.lang classes, 0.0097709 secs
-[0.041s][info][startuptime] StubRoutines generation compiler stubs, 0.0033504 secs
-[0.042s][info][startuptime] Initialize java.lang.invoke classes, 0.0006948 secs
-[0.048s][info][startuptime] Initialize module system, 0.0056185 secs
-[0.049s][info][startuptime] Create VM, 0.0473394 secs
-```
 
 ## Run JMH Benchmark
 `scala-cli . --jmh --power`
