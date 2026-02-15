@@ -86,9 +86,11 @@ native: 0.7.14 (linux x86_64)`
 `scala-cli . --jmh --power`
 
 ```
-Benchmark                                    Mode  Cnt    Score   Error  Units
-IntrinsicPowerBenchmark.power_Intrinsic_Off  avgt   15  401.869 ? 3.443  ns/op
-IntrinsicPowerBenchmark.power_Intrinsic_On   avgt   15   22.362 ? 0.099  ns/op
+Benchmark                                                                         Mode  Cnt    Score    Error  Units
+IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Inline_Natives             avgt   15  409.862 ? 11.196  ns/op
+IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Libm_Intrinsics            avgt   15   91.807 ?  0.248  ns/op
+IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Through_Control_Intrinsic  avgt   15   91.300 ?  0.364  ns/op
+IntrinsicPowerBenchmark.power_Intrinsic_On                                        avgt   15   22.178 ?  0.050  ns/op
 ```
 
 ## Run JMH Benchmark with profiler
