@@ -8,7 +8,7 @@
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Inline_Natives
+# Benchmark: jmh.IntrinsicsPowerBenchmark.power_Intrinsic_Off_By_Disable_Inline_Natives
 
 # Run progress: 0.00% complete, ETA 00:00:40
 # Fork: 1 of 1
@@ -27,12 +27,12 @@ Iteration   5: 401.383 ns/op
 # Processing profiler results: LinuxPerfAsmProfiler
 
 
-Result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Inline_Natives":
+Result "jmh.IntrinsicsPowerBenchmark.power_Intrinsic_Off_By_Disable_Inline_Natives":
   401.945 ?(99.9%) 5.670 ns/op [Average]
   (min, avg, max) = (400.972, 401.945, 404.551), stdev = 1.472
   CI (99.9%): [396.275, 407.615] (assumes normal distribution)
 
-Secondary result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Inline_Natives:asm":
+Secondary result "jmh.IntrinsicsPowerBenchmark.power_Intrinsic_Off_By_Disable_Inline_Natives:asm":
 PrintAssembly processed: 171976 total address lines.
 Perf output processed (skipped 12.127 seconds):
  Column 1: cpu-clock (5065 events)
@@ -219,7 +219,7 @@ Unknown, level 0, java.lang.Double::longBitsToDouble, version 1, compile id 653
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Libm_Intrinsics
+# Benchmark: jmh.IntrinsicsPowerBenchmark.power_Intrinsic_Off_By_Disable_Libm_Intrinsics
 
 # Run progress: 25.00% complete, ETA 00:01:00
 # Fork: 1 of 1
@@ -238,12 +238,12 @@ Iteration   5: 93.840 ns/op
 # Processing profiler results: LinuxPerfAsmProfiler
 
 
-Result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Libm_Intrinsics":
+Result "jmh.IntrinsicsPowerBenchmark.power_Intrinsic_Off_By_Disable_Libm_Intrinsics":
   93.896 ?(99.9%) 4.570 ns/op [Average]
   (min, avg, max) = (92.853, 93.896, 95.868), stdev = 1.187
   CI (99.9%): [89.326, 98.466] (assumes normal distribution)
 
-Secondary result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Libm_Intrinsics:asm":
+Secondary result "jmh.IntrinsicsPowerBenchmark.power_Intrinsic_Off_By_Disable_Libm_Intrinsics:asm":
 PrintAssembly processed: 168087 total address lines.
 Perf output processed (skipped 11.828 seconds):
  Column 1: cpu-clock (5268 events)
@@ -339,7 +339,7 @@ libjvm.so, SharedRuntime::dpow
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Through_Control_Intrinsic
+# Benchmark: jmh.IntrinsicsPowerBenchmark.power_Intrinsic_Off_By_Disable_Through_Control_Intrinsic
 
 # Run progress: 50.00% complete, ETA 00:00:38
 # Fork: 1 of 1
@@ -358,12 +358,12 @@ Iteration   5: 94.713 ns/op
 # Processing profiler results: LinuxPerfAsmProfiler
 
 
-Result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Through_Control_Intrinsic":
+Result "jmh.IntrinsicsPowerBenchmark.power_Intrinsic_Off_By_Disable_Through_Control_Intrinsic":
   93.681 ?(99.9%) 5.896 ns/op [Average]
   (min, avg, max) = (92.468, 93.681, 95.862), stdev = 1.531
   CI (99.9%): [87.785, 99.577] (assumes normal distribution)
 
-Secondary result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_Off_By_Disable_Through_Control_Intrinsic:asm":
+Secondary result "jmh.IntrinsicsPowerBenchmark.power_Intrinsic_Off_By_Disable_Through_Control_Intrinsic:asm":
 PrintAssembly processed: 167115 total address lines.
 Perf output processed (skipped 11.580 seconds):
  Column 1: cpu-clock (5224 events)
@@ -861,7 +861,7 @@ c2, level 4, java.lang.FdLibm$Pow::compute, version 2, compile id 669
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: jmh.IntrinsicPowerBenchmark.power_Intrinsic_On
+# Benchmark: jmh.IntrinsicsPowerBenchmark.power_Intrinsic_On
 
 # Run progress: 75.00% complete, ETA 00:00:19
 # Fork: 1 of 1
@@ -880,12 +880,12 @@ Iteration   5: 22.358 ns/op
 # Processing profiler results: LinuxPerfAsmProfiler
 
 
-Result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_On":
+Result "jmh.IntrinsicsPowerBenchmark.power_Intrinsic_On":
   22.448 ?(99.9%) 0.228 ns/op [Average]
   (min, avg, max) = (22.358, 22.448, 22.517), stdev = 0.059
   CI (99.9%): [22.221, 22.676] (assumes normal distribution)
 
-Secondary result "jmh.IntrinsicPowerBenchmark.power_Intrinsic_On:asm":
+Secondary result "jmh.IntrinsicsPowerBenchmark.power_Intrinsic_On:asm":
 PrintAssembly processed: 170784 total address lines.
 Perf output processed (skipped 11.962 seconds):
  Column 1: cpu-clock (5127 events)

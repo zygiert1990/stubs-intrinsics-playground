@@ -11,28 +11,28 @@ import java.util.concurrent.TimeUnit;
 @Fork(3)
 @Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
 @Measurement(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
-public class IntrinsicPowerBenchmark {
+public class IntrinsicsPowerBenchmark {
 
     @Benchmark
-    public void power_Intrinsic_On(Blackhole bh) {
+    public void power_Intrinsics_On(Blackhole bh) {
         bh.consume(Math.pow(2.0, 10.0));
     }
     
     @Benchmark
     @Fork(value = 3, jvmArgsAppend = {"-XX:+UnlockDiagnosticVMOptions", "-XX:-InlineNatives"})
-    public void power_Intrinsic_Off_By_Disable_Inline_Natives(Blackhole bh) {
+    public void power_Intrinsics_Off_Disabled_By_Inline_Natives(Blackhole bh) {
         bh.consume(Math.pow(2.0, 10.0));
     }
     
     @Benchmark
     @Fork(value = 3, jvmArgsAppend = {"-XX:+UnlockDiagnosticVMOptions", "-XX:ControlIntrinsic=-_dpow"})
-    public void power_Intrinsic_Off_By_Disable_Through_Control_Intrinsic(Blackhole bh) {
+    public void power_Intrinsics_Off_Disabled_By_Through_Control_Intrinsic(Blackhole bh) {
         bh.consume(Math.pow(2.0, 10.0));
     }
     
     @Benchmark
     @Fork(value = 3, jvmArgsAppend = {"-XX:+UnlockDiagnosticVMOptions", "-XX:-UseLibmIntrinsic"})
-    public void power_Intrinsic_Off_By_Disable_Libm_Intrinsics(Blackhole bh) {
+    public void power_Intrinsics_Off_Disabled_By_Libm_Intrinsics(Blackhole bh) {
         bh.consume(Math.pow(2.0, 10.0));
     }
     
