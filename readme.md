@@ -22,10 +22,45 @@ native: 0.7.14 (linux x86_64)`
 ## Run Main Class
 1. With displaying generated stubs:
 `scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintStubCode --power`
-2. With displaying stubs generation time:
-`scala-cli . --main-class playground.Main --java-opt -Xlog:startuptime --power`
-3. With displaying generated stubs and `InlineNatives` option disabled:
+2. With displaying generated stubs and `InlineNatives` option disabled:
 `scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintStubCode --java-opt -XX:-InlineNatives --power`
+3. With printing Intrinsics:
+`scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintIntrinsics --power`
+```
+@ 16   java.lang.Math::pow (6 bytes)   (intrinsic)
+```
+4. With printing Intrinsics and `InlineNatives` option disabled:
+`scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintIntrinsics --java-opt -XX:-InlineNatives --power`
+```
+@ 2   java.lang.FdLibm$Pow::compute (1533 bytes)   failed to inline: hot method too big
+@ 9   java.lang.Double::isNaN (12 bytes)   inline (hot)
+@ 16   java.lang.Double::isNaN (12 bytes)   inline (hot)
+@ 27   java.lang.Math::abs (12 bytes)   inline (hot)
+  @ 1   java.lang.Double::doubleToRawLongBits (0 bytes)   failed to inline: native method
+  @ 8   java.lang.Double::longBitsToDouble (0 bytes)   failed to inline: native method
+@ 33   java.lang.Math::abs (12 bytes)   inline (hot)
+  @ 1   java.lang.Double::doubleToRawLongBits (0 bytes)   failed to inline: native method
+  @ 8   java.lang.Double::longBitsToDouble (0 bytes)   failed to inline: native method
+@ 16   java.lang.Math::pow (6 bytes)   inline (hot)
+  @ 2   java.lang.StrictMath::pow (6 bytes)   inline (hot)
+    @ 2   java.lang.FdLibm$Pow::compute (1533 bytes)   failed to inline: hot method too big
+```
+5. With printing Intrinsics and pow function Intrinsic disabled using `ControlIntrinsic` option:
+`scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintIntrinsics --java-opt -XX:ControlIntrinsic=-_dpow --power`
+```
+@ 2   java.lang.FdLibm$Pow::compute (1533 bytes)   failed to inline: hot method too big
+@ 9   java.lang.Double::isNaN (12 bytes)   inline (hot)
+@ 16   java.lang.Double::isNaN (12 bytes)   inline (hot)
+@ 27   java.lang.Math::abs (12 bytes)   (intrinsic)
+@ 33   java.lang.Math::abs (12 bytes)   (intrinsic)
+@ 16   java.lang.Math::pow (6 bytes)   inline (hot)
+  @ 2   java.lang.StrictMath::pow (6 bytes)   inline (hot)
+    @ 2   java.lang.FdLibm$Pow::compute (1533 bytes)   failed to inline: hot method too big
+```
+6. To print all intrinsic specific options:
+`java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -version | grep -Ei 'use.*intrinsic'`
+7. With displaying stubs generation time:
+`scala-cli . --main-class playground.Main --java-opt -Xlog:startuptime --power`
 ```
 [0.005s][info][startuptime] StubRoutines generation initial stubs, 0.0005537 secs
 [0.005s][info][startuptime] SharedRuntime generate_throw_exception, 0.0000390 secs
