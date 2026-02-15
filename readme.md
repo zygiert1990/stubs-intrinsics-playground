@@ -77,8 +77,13 @@ native: 0.7.14 (linux x86_64)`
   @ 2   java.lang.StrictMath::pow (6 bytes)   inline (hot)
     @ 2   java.lang.FdLibm$Pow::compute (1533 bytes)   failed to inline: hot method too big
 ```
-6. To print all intrinsic specific options:
+6. To print all Intrinsics specific options:
 `java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -version | grep -Ei 'use.*intrinsic'`
+7. With printing Intrinsics and `UseLibmIntrinsic` option disabled:
+`scala-cli . --main-class playground.Main --java-opt -XX:+UnlockDiagnosticVMOptions --java-opt -XX:+PrintIntrinsics --power`
+```
+@ 16   java.lang.Math::pow (6 bytes)   (intrinsic)
+```
 
 ## Run JMH Benchmark
 `scala-cli . --jmh --power`
